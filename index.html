@@ -469,12 +469,16 @@ var mySwiper = new Swiper('.swiper-container', {
 	nextButton:'.swiper-button-next',
 	loop:true
 })
-
 let floor = document.querySelectorAll(".floor");
 document.onscroll = function(){
-	var scrllT=document.body.scrollTop;
+	var scrollTop=0; 
+	if(document.documentElement&&document.documentElement.scrollTop){ 
+	scrollTop=document.documentElement.scrollTop; 
+	}else if(document.body){ 
+	scrollTop=document.body.scrollTop; 
+	} 
 	for(let i = 0;i < floor.length;i++){
-		if(scrllT > floor[i].offsetTop - 300){
+		if(scrollTop > floor[i].offsetTop - 300){
 			var images=$('img',floor[i]);//获取该楼层中所有的图片
 			for(var j=0;j<images.length;j++){//将该楼层所有的图片路径转换为相应attr属性中的路径值
 				var attr=images[j].getAttribute('attr');
